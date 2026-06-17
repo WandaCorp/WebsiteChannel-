@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canal web | NetTiss Software</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <!-- Import Map: resuelve bare imports desde CDN -->
+<script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js",
+      "firebase/firestore": "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js",
+      "marked": "https://cdn.jsdelivr.net/npm/marked@15.0.7/lib/marked.esm.js",
+      "dompurify": "https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.es.mjs"
+    }
+  }
+</script>
+    
+  </head>
+  <body>
+    
+    <header class="header" id="header">
+    <div class="header__left">
+        <div class="header__avatar-container">
+            <img 
+                class="header__avatar-img" id="avatarIMG" 
+                src="img/default-profile-channel.jpg" 
+                alt="Avatar del canal Don Nadie"
+                loading="lazy"
+            >
+        </div>
+        <div class="header__info" id="headerInfo">
+            <h1 class="header__channel-name" id="channelName"></h1>
+            <!-- Datos de suscriptores se registrarán con Firebase Auth más adelante-->
+            <span class="header__subscribers" id="subscribers"></span>
+        </div>
+    </div>
+
+    <div class="header__right">
+        <div class="header__pill">
+            <button 
+                class="header__pill-btn" 
+                id="share-channel" 
+                title="Compartir canal"
+                aria-label="Compartir canal"
+                type="button"
+            >
+                <svg width="25" height="25" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-iconid="309956" data-svgname="Share android">
+    <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+    <title>ic_fluent_share_android_24_regular</title>
+    <desc>Created with Sketch.</desc>
+    <g id="🔍-Product-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_fluent_share_android_24_regular" fill="currentColor" fill-rule="nonzero">
+            <path d="M17,2.49823144 C18.9339734,2.49823144 20.5017686,4.06602662 20.5017686,6 C20.5017686,7.93397338 18.9339734,9.50176856 17,9.50176856 C15.9700352,9.50176856 15.0439275,9.0571034 14.4031791,8.34927521 L9.84455071,10.9536986 C9.94786118,11.284101 10.0035371,11.6355486 10.0035371,12 C10.0035371,12.3644514 9.94786118,12.715899 9.84455071,13.0463014 L14.4022538,15.6517469 C15.0430358,14.9433244 15.9695393,14.4982314 17,14.4982314 C18.9339734,14.4982314 20.5017686,16.0660262 20.5017686,17.9999996 C20.5017686,19.9339729 18.9339734,21.5017681 17,21.5017681 C15.0660266,21.5017681 13.4982314,19.9339729 13.4982314,17.9999996 C13.4982314,17.6355481 13.5539074,17.2841005 13.6572179,16.9536982 L9.09951477,14.3482526 C8.45873279,15.0566751 7.53222925,15.5017686 6.50176856,15.5017686 C4.56779519,15.5017686 3,13.9339734 3,12 C3,10.0660266 4.56779519,8.49823144 6.50176856,8.49823144 C7.53173336,8.49823144 8.45784104,8.9428966 9.09858948,9.65072479 L13.6572179,7.04630139 C13.5539074,6.71589903 13.4982314,6.36445142 13.4982314,6 C13.4982314,4.06602662 15.0660266,2.49823144 17,2.49823144 Z M17,15.998231 C15.8944537,15.998231 14.9982314,16.8944533 14.9982314,17.9999996 C14.9982314,19.1055458 15.8944537,20.0017681 17,20.0017681 C18.1055463,20.0017681 19.0017686,19.1055458 19.0017686,17.9999996 C19.0017686,16.8944533 18.1055463,15.998231 17,15.998231 Z M6.50176856,9.99823144 C5.39622231,9.99823144 4.5,10.8944537 4.5,12 C4.5,13.1055463 5.39622231,14.0017686 6.50176856,14.0017686 C7.60731481,14.0017686 8.50353713,13.1055463 8.50353713,12 C8.50353713,10.8944537 7.60731481,9.99823144 6.50176856,9.99823144 Z M17,3.99823144 C15.8944537,3.99823144 14.9982314,4.89445375 14.9982314,6 C14.9982314,7.10554625 15.8944537,8.00176856 17,8.00176856 C18.1055463,8.00176856 19.0017686,7.10554625 19.0017686,6 C19.0017686,4.89445375 18.1055463,3.99823144 17,3.99823144 Z" id="🎨-Color">
+
+</path>
+        </g>
+    </g>
+</svg>
+            </button>
+            <button 
+                class="header__pill-btn" 
+                title="Más opciones"
+                id="options-btn"
+                aria-label="Más opciones"
+                type="button"
+            >
+                <svg fill="currentColor" width="20" height="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-iconid="395489" data-svgname="Options vertical"><path d="M388.8 896.4v-27.198c.6-2.2 1.6-4.2 2-6.4 8.8-57.2 56.4-102.4 112.199-106.2 62.4-4.4 115.2 31.199 132.4 89.199 2.2 7.6 3.8 15.6 5.8 23.4v27.2c-.6 1.8-1.6 3.399-1.8 5.399-8.6 52.8-46.6 93-98.6 104.4-4 .8-8 2-12 3h-27.2c-1.8-.6-3.6-1.6-5.4-1.8-52-8.4-91.599-45.4-103.6-96.8-1.2-5-2.6-9.6-3.8-14.2zm252.4-768.797l-.001 27.202c-.6 2.2-1.6 4.2-1.8 6.4-9 57.6-56.8 102.6-113.2 106.2-62.2 4-114.8-32-131.8-90.2-2.2-7.401-3.8-15-5.6-22.401v-27.2c.6-1.8 1.6-3.4 2-5.2 9.6-52 39.8-86 90.2-102.2 6.6-2.2 13.6-3.4 20.4-5.2h27.2c1.8.6 3.6 1.6 5.4 1.8 52.2 8.6 91.6 45.4 103.6 96.8 1.201 4.8 2.401 9.4 3.601 13.999zm-.001 370.801v27.2c-.6 2.2-1.6 4.2-2 6.4-9 57.4-58.6 103.6-114.6 106-63 2.8-116.4-35.2-131.4-93.8-1.6-6.2-3-12.4-4.4-18.6v-27.2c.6-2.2 1.6-4.2 2-6.4 8.8-57.4 58.6-103.601 114.6-106.2 63-3 116.4 35.2 131.4 93.8 1.6 6.4 3 12.6 4.4 18.8z"></path></svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="main-channel-container" id="mainChannelContainer">
+    <section class="channel-feed" id="channelFeed" aria-label="Feed de publicaciones del canal"> 
+        <!-- Se crearán más con Java script y datos de Firebase Firestore Database --> 
+    </section>
+
+    <div class="textarea-container">
+        <div class="textarea-wrapper">
+            <textarea
+                class="textarea"
+                id="textarea"
+                placeholder="Escribe algo"
+                aria-label="Enviar nuevo Post"
+                rows="1"
+            ></textarea>
+        </div>
+        <button
+                class="send-button"
+                id="sendButton"
+                title="Enviar publicación"
+                aria-label="Enviar publicación"
+                type="button">
+          <span class="material-symbols-oulined">arrow_upward</span>
+        </button>
+    </div>
+  </main>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <!-- Orden de carga: Dependencias → Config → DOM → UI -->
+  <!-- 1. Referencias del DOM (sin dependencias) -->
+  <script type="module" src="js/script-basic.js"></script>
+  <!-- 2. Configuración de Firebase Firestore (dependencia para UI) -->
+  <script type="module" src="js/firebase-config.js"></script>
+  <!-- Script de manejo de Logins -->
+  <script type="module" src="js/login.js"></script>
+  <!-- 3. UI principal (depende de script-basic.js y firebase-config.js) -->
+  <script type="module" src="js/ui.js"></script>
+  </body>
+</html>
