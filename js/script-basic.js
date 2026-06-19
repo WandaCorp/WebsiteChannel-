@@ -24,7 +24,8 @@ export const channelName = document.getElementById('channelName');
 export const subscribers = document.getElementById('subscribers');
 
 // --- RIGHT SECTION ---
-
+// Botón para cambiar el tema del canal
+export const changeTheme = document.getElementById("aspect-theme");
 /** Botón para compartir el canal */
 export const shareChannelBtn = document.getElementById('share-channel');
 

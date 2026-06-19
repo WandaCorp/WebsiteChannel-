@@ -19,7 +19,8 @@ import {
   samplePost,
   sampleDateChip,
   avatarIMG,
-  channelName
+  channelName,
+  changeTheme
 } from './script-basic.js';
 
 import {
@@ -146,11 +147,11 @@ async function getRoleChip(authorUID) {
   const authorizedUids = config['authorized-uids'] || [];
 
   if (authorUID === ownerUID) {
-    return '<span class="role-chip role-chip--owner">Propietario</span>';
+    return '<span class="role-chip role-chip--owner"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown-icon lucide-crown"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/></svg>Propietario</span>';
   }
 
   if (authorizedUids.includes(authorUID)) {
-    return '<span class="role-chip role-chip--admin">Admin</span>';
+    return '<span class="role-chip role-chip--admin"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-check-icon lucide-badge-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg> Admin</span>';
   }
 
   return '';
@@ -208,7 +209,7 @@ function openOptionsModal() {
     <div class="options-modal" id="optionsModal">
       <div class="options-modal__header">
         <button class="options-modal__close" id="closeOptionsModal" title="Cerrar" aria-label="Cerrar" type="button">
-          <span class="material-symbols-outlined" style="font-size: 20px;">close</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
       </div>
       <div class="options-modal__profile">
@@ -218,11 +219,11 @@ function openOptionsModal() {
       </div>
       <div class="options-modal__actions">
         <button class="options-modal__btn options-modal__btn--share" id="shareChannelModalBtn" type="button">
-          <span class="material-symbols-outlined options-modal__btn-icon">share</span>
+          <svg class="options-modal__btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2-icon lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
           Compartir el canal 
         </button>
         <button class="options-modal__btn options-modal__btn--logout" id="logoutBtn" type="button">
-          <span class="material-symbols-outlined options-modal__btn-icon">logout</span>
+          <svg class="options-modal__btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
           Abandonar el canal
         </button>
       </div>
@@ -270,7 +271,7 @@ async function handleLogout(button, overlay) {
   const originalText = button.innerHTML;
   button.disabled = true;
   button.innerHTML = `
-    <span class="material-symbols-outlined options-modal__btn-icon" style="animation: spin 0.8s linear infinite;">progress_activity</span>
+    <svg class="options-modal__btn-icon" style="animation: spin 0.8s linear infinite; xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-loader-icon lucide-loader"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>
     Abandonando canal...
   `;
   try {
@@ -306,16 +307,15 @@ function openPostOptionsMenu(articleElement, postId, content) {
 
   menu.innerHTML = `
     <button class="post-options-item post-options-item--copy" id="copyPostBtn" type="button">
-      <span class="material-symbols-outlined post-options-item__icon">content_copy</span>
-      Copiar texto
+      <svg class="post-options-item__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy-icon lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+      Copiar
     </button>
-    <div class="post-options-divider"></div>
     <button class="post-options-item post-options-item--edit" id="editPostBtn" type="button">
-      <span class="material-symbols-outlined post-options-item__icon">edit</span>
+      <svg class="post-options-item__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen-line-icon lucide-pen-line"><path d="M13 21h8"/><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg>
       Editar
     </button>
     <button class="post-options-item post-options-item--danger" id="deletePostBtn" type="button">
-      <span class="material-symbols-outlined post-options-item__icon">delete</span>
+      <svg class="post-options-item__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-icon lucide-trash"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
       Eliminar
     </button>
   `;
@@ -700,6 +700,64 @@ function setupPostGestures(article, container, postId, content, userReaction) {
   }
 }
 
+// ==================== CAMBIO DE TEMA ====================
+
+/**
+ * Configura el botón de cambio de tema (claro/oscuro).
+ * Usa localStorage para persistir la preferencia.
+ * Ícono: ☁️ (claro) / 🌙 (oscuro)
+ */
+// ==================== CAMBIO DE TEMA ====================
+
+/** SVG: Ícono de nube (tema claro) */
+const CLOUD_SVG = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-icon lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+`;
+
+/** SVG: Ícono de luna (tema oscuro) */
+const MOON_SVG = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+`;
+
+/**
+ * Configura el botón de cambio de tema (claro/oscuro).
+ * Usa SVGs inline en lugar de Material Symbols.
+ * Persiste en localStorage.
+ */
+function setupThemeToggle() {
+  if (!changeTheme) return;
+  const iconContainer = changeTheme.querySelector('.header__pill-icon');
+  if (!iconContainer) return;
+
+  // Leer tema guardado
+  const savedTheme = localStorage.getItem('channel-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  // Aplicar tema inicial
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    iconContainer.innerHTML = MOON_SVG;
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    iconContainer.innerHTML = CLOUD_SVG;
+  }
+
+  // Cambiar tema al hacer clic
+  changeTheme.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      iconContainer.innerHTML = CLOUD_SVG;
+      localStorage.setItem('channel-theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      iconContainer.innerHTML = MOON_SVG;
+      localStorage.setItem('channel-theme', 'dark');
+    }
+  });
+}
+
 // ==================== INICIALIZACIÓN ====================
 
 function init() {
@@ -708,6 +766,7 @@ function init() {
   loadFeedPosts();
   setupShareButton();
   setupOptionsButton();
+  setupThemeToggle();
 
   window.addEventListener('authStateChanged', () => {
     updateTextareaVisibility();
@@ -728,15 +787,15 @@ function updateTextareaVisibility() {
         <textarea class="textarea" id="textarea" placeholder="Escribe algo" aria-label="Enviar nuevo Post a Firebase" rows="1"></textarea>
       </div>
       <button class="send-button" id="sendButton" title="Enviar publicación" aria-label="Enviar publicación" type="button">
-          <span class="material-symbols-outlined send-button__icon">arrow_upward</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-horizontal-icon lucide-send-horizontal"><path d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z"/><path d="M6 12h16"/></svg>
       </button>
     `;
     refreshTextareaEvents();
   } else {
     textareaContainer.innerHTML = `
-      <div class="textarea-wrapper" style="justify-content: center; padding: 16px 5px;">
+      <div class="textarea-wrapper" style="justify-content: center; padding: 8px 5px;">
         <p style="margin: 0; font-size: 14px; color: #6B7280; text-align: center;">
-          Solo el propietario y los administradores aprobados pueden enviar contenido al canal.
+          Solo el propietario y los administradores pueden enviar contenido al canal.
         </p>
       </div>
     `;
@@ -935,7 +994,7 @@ async function renderPostBubble(content, time, publisherName, postId, authorUID,
   article.className = 'channel-post';
   article.dataset.postId = postId;
 
-  const contentWithBreaks = content.replace(/\n/g, '  \n');
+  const contentWithBreaks = content.replace(/\n/g, '<br>');
   const { html } = parseContent(contentWithBreaks);
   const roleChip = await getRoleChip(authorUID);
 
