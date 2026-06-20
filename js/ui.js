@@ -823,13 +823,6 @@ function refreshTextareaEvents() {
   });
 
   newSendButton.addEventListener('click', () => publishPost(newTextarea, newSendButton));
-
-  newTextarea.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      publishPost(newTextarea, newSendButton);
-    }
-  });
 }
 
 // ==================== RENDERIZADO DEL UI + FEED ====================
@@ -1057,8 +1050,8 @@ function renderEmptyState() {
   if (document.getElementById('emptyStateMsg')) return;
   const emptyMsg = document.createElement('p');
   emptyMsg.id = 'emptyStateMsg';
-  emptyMsg.textContent = 'Este es un espacio inspirado en WhatsApp Channels, pensado para compartir contenido con más libertad.';
-  emptyMsg.style.cssText = 'color: #f8cf4a; background: #f93f3f; text-align: center; padding: 10px 20px; font-size: 13px; opacity: 0.9; border-radius: 8px;';
+  emptyMsg.textContent = 'Este es un espacio inspirado en WhatsApp Channels, pensado para compartir contenido con más libertad. Se recomienda discreción en la lectura y en visualizaciones multimedias de este canal.';
+  emptyMsg.style.cssText = 'color: #333; background: #f7f7f7; text-align: center; padding: 10px 15px; font-size: 13px; opacity: 0.9; border-radius: 16px;';
   channelFeed.appendChild(emptyMsg);
 }
 
@@ -1066,8 +1059,8 @@ function versionStatus() {
   if (document.getElementById('versionStatusMsg')) return;
   const vStatus = document.createElement('p');
   vStatus.id = 'versionStatusMsg';
-  vStatus.textContent = `El canal "${channelName.textContent}", se encuentra en una versión experimental. Poco a poco se añadirán más funcionalidades.`;
-  vStatus.style.cssText = 'color: #333; background: #f7f7f7; text-align: center; padding: 10px 20px; font-size: 13px; opacity: 0.9; border-radius: 8px;';
+  vStatus.textContent = `El canal "${channelName.textContent}", se encuentra en una versión experimental. Se añadirán más funcionalidades gradualmente para el suscriptor.`;
+  vStatus.style.cssText = 'color: #333; background: #f7f7f7; text-align: center; padding: 10px 15px; font-size: 13px; opacity: 0.9; border-radius: 16px;';
   channelFeed.appendChild(vStatus);
 }
 
@@ -1177,7 +1170,8 @@ function getTimeFromTimestamp(timestamp) {
   const date = timestamp instanceof Timestamp ? timestamp.toDate() : new Date();
   const hours = date.getHours().toString().padStart(2, '0');
   const minutes = date.getMinutes().toString().padStart(2, '0');
-  return `${hours}:${minutes}`;
+  const seconds = date.getSeconds().toString().padStart(2, '0');
+  return `enviado a las: ${hours}:${minutes}:${seconds}`;
 }
 
 function formatDateLong(date) {
@@ -1185,7 +1179,7 @@ function formatDateLong(date) {
     'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
   ];
-  return `${date.getDate()} de ${months[date.getMonth()]} ${date.getFullYear()}`;
+  return `${date.getDate()} de ${months[date.getMonth()]} del ${date.getFullYear()}`;
 }
 
 function scrollToBottom() {

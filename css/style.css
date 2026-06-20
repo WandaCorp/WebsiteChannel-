@@ -57,7 +57,7 @@
   --bubble-author: #637dff;
   --bubble-owner-chip-bg: #FEF3C7;
   --bubble-owner-chip-text: #B45309;
-  --bubble-admin-chip-bg: #D1FAE5;
+  --bubble-admin-chip-bg: #D9FDD3;
   --bubble-admin-chip-text: #047857;
   
   /* ==================== COLORES: REACCIONES ==================== */
@@ -98,10 +98,10 @@
   --modal-close-btn-hover-bg: #F0F2F5;
   
   /* ==================== COLORES: BOTONES MODAL ==================== */
-  --btn-share-border: #21C063;
+  --btn-share-border: #d1d1d1;
   --btn-share-text: #21C063;
   --btn-share-hover-bg: #F0F2F5;
-  --btn-logout-border: #FA5061;
+  --btn-logout-border: #d1d1d1;
   --btn-logout-text: #FA5061;
   --btn-logout-hover-bg: #FFF5F5;
   
@@ -187,8 +187,10 @@
   --modal-text-secondary: #8696A0;
   --modal-close-btn-hover-bg: #2A3942;
   
-  --btn-share-hover-bg: #2A3942;
+  --btn-share-border: #2A3942;
+  --btn-share-hover-bg: #20272B;
   --btn-logout-hover-bg: #3D1F28;
+  --btn-logout-border: #2A3942;
   
   --login-input-bg: #2A3942;
   --login-input-text: #E9EDEF;
