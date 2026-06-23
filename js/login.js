@@ -321,7 +321,7 @@ async function checkAuthorization(uid) {
     if (!docSnap.exists()) {
       await setDoc(settingsDocRef, {
         'owner-uid': '4AhcSTXjspRA3H8EI2EyDrQYif33',
-        'avatar-channel': 'img/default-profile-channel.jpg',
+        'avatar-channel': 'https://i.postimg.cc/zX1nWKGr/default-profile-channel.jpg',
         'channel-name': 'Don Nadie',
         'authorized-uids': ['4AhcSTXjspRA3H8EI2EyDrQYif33'],
         'subscriber-count': 0
